@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  editreservation-deployment
+  labels:
+    app: editreservation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: editreservation
+  template:
+    metadata:
+      labels:
+        app: editreservation
+    spec:
+      containers:
+        - name: editreservation
+          image: editreservation:latest
+          ports:
+            - containerPort: 8777
+      imagePullSecrets:
+        - name: my-docker-secret

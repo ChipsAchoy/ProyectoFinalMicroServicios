@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: addreservation-deployment
+  labels:
+    app: addreservation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: addreservation
+  template:
+    metadata:
+      labels:
+        app: addreservation
+    spec:
+      containers:
+        - name: addreservation
+          image: addreservation:latest
+          ports:
+            - containerPort: 8777
+      imagePullSecrets:
+        - name: my-docker-secret

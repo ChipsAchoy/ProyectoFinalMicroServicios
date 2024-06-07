@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adduser-deployment
+  labels:
+    app: adduser
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adduser
+  template:
+    metadata:
+      labels:
+        app: adduser
+    spec:
+      containers:
+        - name: adduser
+          image: adduser:latest
+          ports:
+            - containerPort: 8777
+      imagePullSecrets:
+        - name: my-docker-secret
