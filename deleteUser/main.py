@@ -1,6 +1,6 @@
 from UserRequestController import UserRequestController
 from flask import Flask, request, jsonify
-
+from Encryption import *
 
 app = Flask(__name__)
 
@@ -38,6 +38,8 @@ def delete_user():
  
 
     response = controller.delete_user(id_u)
+    response = encrypt_fullmessage(response)
+    
     return (response, 200, headers)
 
 if __name__ == "__main__":

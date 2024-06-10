@@ -1,6 +1,6 @@
 from UserRequestController import UserRequestController
 from flask import Flask, request, jsonify
-
+from Encryption import *
 
 app = Flask(__name__)
 
@@ -29,6 +29,7 @@ def login():
     
     print("DATA:",request.get_json())
     data = request.get_json()
+    data = decrypt_responseAPI(data,get_secret_key())
 
     
     
@@ -45,7 +46,8 @@ def login():
         return (response, 460, headers)
 
     response = controller.login(pw, email)  
-   
+    response = encrypt_fullmessage(response)
+
     return (response, 200, headers)
 
 

@@ -1,3 +1,5 @@
 PyMySql
 bcrypt
 flask
+cryptography
+pyjwt

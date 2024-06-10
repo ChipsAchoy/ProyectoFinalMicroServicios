@@ -1,6 +1,6 @@
 from UserRequestController import UserRequestController
 from flask import Flask, request, jsonify
-
+from Encryption import *
 
 app = Flask(__name__)
 
@@ -26,6 +26,8 @@ def add_user():
     controller = UserRequestController()
 
     data = request.get_json(silent=True)
+
+    data = decrypt_responseAPI(data,get_secret_key())
     
     pw = data.get('contrasena')
     email = data.get('correo')
@@ -63,6 +65,8 @@ def add_user():
         return (response, 460, headers)
 
     response = controller.add_user(pw, email, name, lname, direct, access, id_rest)
+
+    response = encrypt_fullmessage(response)
     return (response, 200, headers)
 
 

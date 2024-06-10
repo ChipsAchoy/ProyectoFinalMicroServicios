@@ -1,6 +1,6 @@
 from UserRequestController import UserRequestController
 from flask import Flask, request, jsonify
-
+from Encryption import *
 
 app = Flask(__name__)
 
@@ -35,6 +35,7 @@ def get_reservation_per_user():
         return (response, 200, headers)
 
     response = controller.get_user_reservation(id_user)
+    response = encrypt_fullmessage(response)
     
     return (response, 200, headers)
 

@@ -1,5 +1,6 @@
 from UserRequestController import UserRequestController
 from flask import Flask, request, jsonify
+from Encryption import *
 
 
 app = Flask(__name__)
@@ -20,6 +21,8 @@ def add_reservation():
     controller = UserRequestController()
 
     data = request.get_json(silent=True)
+
+    data = decrypt_responseAPI(data,get_secret_key())
 
     date = data['date']
     time = data['time']
@@ -42,7 +45,8 @@ def add_reservation():
 
     response = controller.add_reservation(date, time, state, people_quant, id_user, id_rest)
 
-
+    response = encrypt_fullmessage(response)
+    
     return (response, 200, headers)
 
 if __name__ == "__main__":
