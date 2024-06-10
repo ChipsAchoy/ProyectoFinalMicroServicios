@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: addreservation
-          image: addreservation:latest
+          image: addreservation:2.0
           ports:
             - containerPort: 8777
       imagePullSecrets:

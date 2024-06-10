@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: adduser
-          image: adduser:latest
+          image: adduser:2.0
           ports:
             - containerPort: 8777
       imagePullSecrets:
