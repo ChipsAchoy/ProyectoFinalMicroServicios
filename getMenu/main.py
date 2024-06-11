@@ -14,7 +14,7 @@ def get_menu():
     headers={
         'Content-Type':'text/json',
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Methods': '   ',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     }
 

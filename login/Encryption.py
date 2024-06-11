@@ -88,13 +88,7 @@ def get_jwt_token(data):
 
 def encrypt_fullmessage(data):
 
-    salt, iv, ciphertext = encrypt_message(json.dumps(data), get_secret_key())
-    
-    # Encode salt, iv, and ciphertext for transmission
-    encrypted_data = get_encrypted_data(salt, iv, ciphertext)
-    
-    # Create a JWT token
-    token = get_jwt_token(encrypted_data)
+    token = get_jwt_token(data)
 
     return {'token':token}
 
@@ -102,15 +96,13 @@ def encrypt_fullmessage(data):
 def decrypt_responseAPI(response, password):
     token = response['token']
     try:
+        
         decoded = jwt.decode(token, get_secret_key(), algorithms=['HS256'])
         encrypted_data = decoded['data']
+        print("ENCRYPTED DATA:",encrypted_data)
         
-        salt = urlsafe_b64decode(encrypted_data['salt'])
-        iv = urlsafe_b64decode(encrypted_data['iv'])
-        ciphertext = urlsafe_b64decode(encrypted_data['ciphertext'])
-        
-        decrypted_message = decrypt_message(salt, iv, ciphertext, password)
-        return json.loads(decrypted_message)
+       
+        return encrypted_data
     
     except jwt.ExpiredSignatureError:
         print("The token has expired.")

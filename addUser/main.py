@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 
 #@functions_framework.http
-@app.route('/addUser', methods=['POST'])
+@app.route('/addUser', methods=['POST', 'OPTIONS'])
 def add_user():
 
 
@@ -26,8 +26,6 @@ def add_user():
     controller = UserRequestController()
 
     data = request.get_json(silent=True)
-
-    data = decrypt_responseAPI(data,get_secret_key())
     
     pw = data.get('contrasena')
     email = data.get('correo')

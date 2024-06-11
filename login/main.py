@@ -6,13 +6,13 @@ app = Flask(__name__)
 
 
 #@functions_framework.http
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST','OPTIONS'])
 def login():
-
 
     if request.method == "OPTIONS":
         # Allows GET requests from any origin with the Content-Type
-        # header and caches preflight response for an 3600s
+        # header and caches preflight response for an 3600s\
+        
         headers = {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
@@ -27,10 +27,8 @@ def login():
 
     #data = request.json  # Obtener los datos del cuerpo de la solicitud JSON
     
-    print("DATA:",request.get_json())
+    print("DATA:",request.get_json())   
     data = request.get_json()
-    data = decrypt_responseAPI(data,get_secret_key())
-    print("DATA DECRYPTED:",data)
     
     
     pw = data.get('contrasena')
@@ -47,7 +45,8 @@ def login():
 
     response = controller.login(pw, email)  
     print("RESPONSE:",response)
-    response = encrypt_fullmessage(response)
+    
+    response = encrypt_fullmessage(response)    
 
     return (response, 200, headers)
 

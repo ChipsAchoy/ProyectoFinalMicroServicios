@@ -7,12 +7,12 @@ app = Flask(__name__)
 
 
 
-@app.route('/add_reservation', methods=['POST'])
+@app.route('/add_reservation', methods=['POST', 'OPTIONS'])
 def add_reservation():
     if request.method == "OPTIONS":
         headers = {
             "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Methods":  "GET, POST, PUT, DELETE, OPTIONS",
             "Access-Control-Allow-Headers": "Content-Type",
             "Access-Control-Max-Age": "3600",
         }
@@ -21,8 +21,6 @@ def add_reservation():
     controller = UserRequestController()
 
     data = request.get_json(silent=True)
-
-    data = decrypt_responseAPI(data,get_secret_key())
 
     date = data['date']
     time = data['time']
