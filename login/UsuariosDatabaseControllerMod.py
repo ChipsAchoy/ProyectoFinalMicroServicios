@@ -27,12 +27,15 @@ class UsuariosDatabaseController:
         try:
             with self.conn:
                 with self.conn.cursor() as cursor:
-                    sql_query = "SELECT id, contrasena FROM Usuario WHERE correo = %s"
+                    sql_query = "SELECT * FROM Usuario WHERE correo = %s"
                     cursor.execute(sql_query, email)
                     user_data = cursor.fetchone()
 
                     if user_data and self.verify_password(pw, user_data['contrasena']):
-                        return {'id': user_data['id'], 'correct': True}
+                        return {'id': user_data['id'], 'correct': True, 
+                                'nombre': user_data['nombre'], 'apellido': user_data['apellido'], 
+                                'direccion': user_data['direccion'],
+                                'nivel_acceso':user_data['nivel_acceso']}
                     else:
                         return {'id': 0, 'correct': False}
         except Exception as e:

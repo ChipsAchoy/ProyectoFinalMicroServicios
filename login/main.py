@@ -30,7 +30,7 @@ def login():
     print("DATA:",request.get_json())
     data = request.get_json()
     data = decrypt_responseAPI(data,get_secret_key())
-
+    print("DATA DECRYPTED:",data)
     
     
     pw = data.get('contrasena')
@@ -46,6 +46,7 @@ def login():
         return (response, 460, headers)
 
     response = controller.login(pw, email)  
+    print("RESPONSE:",response)
     response = encrypt_fullmessage(response)
 
     return (response, 200, headers)
