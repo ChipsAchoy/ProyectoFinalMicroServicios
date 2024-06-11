@@ -30,7 +30,7 @@ class ReservationDatabaseController:
         with self.conn:
             with self.conn.cursor() as cursor:
             
-                sql_query = "SELECT R.*, T.Nombre FROM Reservaciones as R, Restaurante as T WHERE R.id_usuario = %s AND R.id_rest = T.id"
+                sql_query = "SELECT R.*,T.Nombre  FROM Reservaciones as R, Restaurante as T WHERE R.id_rest = T.id"
                 cursor.execute(sql_query, id_user)
                 reservations = cursor.fetchall()
 

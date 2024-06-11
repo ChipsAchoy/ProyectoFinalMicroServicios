@@ -30,8 +30,8 @@ class ReservationDatabaseController:
         with self.conn:
             with self.conn.cursor() as cursor:
             
-                sql_query = "SELECT * FROM Reservaciones WHERE id_rest = %s"
-                cursor.execute(sql_query, id_user)
+                sql_query = "SELECT R.*,T.Nombre FROM Reservaciones as R, Restaurante as T WHERE R.id_rest = %s AND T.id = %s"
+                cursor.execute(sql_query, id_user, id_user)
                 reservations = cursor.fetchall()
 
                 #print(reservations)
@@ -45,7 +45,7 @@ class ReservationDatabaseController:
                     is_free = item['estado']
                     people_quant = item['people_quant']
                     id_user = item['id_usuario']
-                    id_rest = item['id_rest']
+                    nombre = item['Nombre']
                     time_formatted = str(time_str)  # Obtener solo la hora sin microsegundos
                     state = self.get_state(is_free)
                     
@@ -60,7 +60,7 @@ class ReservationDatabaseController:
                         "state": state,
                         "people_quant": people_quant,
                         "id_user": id_user,
-                        "id_rest": id_rest
+                        "nombre": nombre
                     }
                     result.append(json_obj)
                     # Agregar el objeto JSON al resultado
