@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: deleteuser
-          image: deleteuser:2.0
+          image: deleteuser:5.0
           ports:
             - containerPort: 8777
       imagePullSecrets:

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: getmenu
-          image: getmenu:3.0
+          image: getmenu:5.0
           ports:
             - containerPort: 8777
       imagePullSecrets:

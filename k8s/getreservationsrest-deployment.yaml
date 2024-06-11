@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: getreservationsrest
-          image: getreservationsrest:2.0
+          image: getreservationsrest:5.0
           ports:
             - containerPort: 8777
       imagePullSecrets:
