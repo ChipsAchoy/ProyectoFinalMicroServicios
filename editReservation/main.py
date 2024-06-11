@@ -5,7 +5,7 @@ from Encryption import *
 app = Flask(__name__)
 
 
-@app.route('/edit_reservation', methods=['POST'])
+@app.route('/edit_reservation', methods=['POST', 'OPTIONS'])
 def edit_reservation():
 #def edit_reservation():
 
@@ -25,7 +25,7 @@ def edit_reservation():
     controller = UserRequestController()
     
     data = request.get_json(silent=True)
-    data = decrypt_responseAPI(data,get_secret_key())
+    print(data)
     
     id_r = data['id']
     state = data['state']

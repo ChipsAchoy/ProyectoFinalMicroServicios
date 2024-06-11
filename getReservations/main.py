@@ -24,15 +24,12 @@ def get_reservation_per_user():
     
     controller = UserRequestController()
 
-    data = request.args
+
 
     id_user = 0
 
     headers = {"Access-Control-Allow-Origin": "*"}
 
-    if not id_user:
-        response = controller.answer_generator.generate_error_response(464, "Usuario del ID is empty")
-        return (response, 200, headers)
 
     response = controller.get_user_reservation(id_user)
     response = encrypt_fullmessage(response)
