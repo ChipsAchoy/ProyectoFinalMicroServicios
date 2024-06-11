@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: login
-          image: login:2.0
+          image: login:3.0
           ports:
             - containerPort: 8777
       imagePullSecrets:
