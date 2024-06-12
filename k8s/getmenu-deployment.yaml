@@ -18,6 +18,6 @@ spec:
         - name: getmenu
           image: getmenu:3.0
           ports:
-            - containerPort: 8777
+            - containerPort: 8765
       imagePullSecrets:
         - name: my-docker-secret

@@ -7,6 +7,6 @@ spec:
     app: getmenu
   ports:
     - protocol: TCP
-      port: 8777
-      targetPort: 8777
+      port: 8765
+      targetPort: 8765
   type: NodePort

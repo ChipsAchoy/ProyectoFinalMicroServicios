@@ -20,7 +20,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 
-EXPOSE 8777
+EXPOSE 8765
 
 # Definir el comando de entrada predeterminado
 CMD ["python", "main.py"]
