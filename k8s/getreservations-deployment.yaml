@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: addreservation-deployment
+  name:  getreservations-deployment
   labels:
-    app: addreservation
+    app: getreservations
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: addreservation
+      app: getreservations
   template:
     metadata:
       labels:
-        app: addreservation
+        app: getreservations
     spec:
       containers:
-        - name: addreservation
-          image: addreservation:5.0
+        - name: getreservations
+          image: getreservations:5.0
           ports:
             - containerPort: 8777
       imagePullSecrets:
